@@ -7,6 +7,7 @@ interface MenuState {
   collapsed: Boolean;
   settingsPanel: Boolean;
   activeMenu: Array<string>;
+  selectedMenu:Array<string>;
   tagList: Array<any>;
 }
 
@@ -16,24 +17,30 @@ export const useMenuStore = defineStore('menu',{
       systemName: '榕树-Admin',
       collapsed: false,
       settingsPanel: false,
-      activeMenu: sessionStorage.get('activeMenu') || ['/home'],
+      activeMenu: ['/home'],
+      selectedMenu: ['/home'],
       tagList: [{ name: "工作台", path: "/home" }]
     }
   },
-  getters: {},
+  getters: {
+    // selectedMenu: (state) => {
+    //   return state.activeMenu
+    // },
+  },
   actions: {
     // 折叠器
     changeCollapsed(val: boolean) {
       this.collapsed = !this.collapsed;
     },
-    // 高亮选中菜单
-    changeActiveMenu(val: string) {
-      sessionStorage.set('activeMenu', [val])
-    },
     // 设置面板
     changeSettingPanel(val: boolean) {
       this.settingsPanel = !this.settingsPanel;
     },
+    // 设置选中的菜单
+    changeSelectedMenu(val:string) {
+      this.selectedMenu = [val];
+    },
+
     // 新增一个标签
     addTagItem(val: any) {
       if (val.name !== '工作台') {
@@ -55,6 +62,9 @@ export const useMenuStore = defineStore('menu',{
         }
       }
     }
+  },
+  persist: {
+    enabled: true // 只有修改了的才会做持久化缓存
   }
 })
 

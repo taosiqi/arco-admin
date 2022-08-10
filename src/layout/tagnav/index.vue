@@ -1,8 +1,7 @@
 <template>
   <div class="tag-content">
     <a-tabs type="rounded"  :editable="true" @tab-click="handleAdd" @delete="handleDelete" auto-switch :active-key="routeActive">
-      <a-tab-pane size='mini' v-for="(item, index) of appStore.tagList" :key="item.path" :title="item.name" :closable="index!==0">
-      </a-tab-pane>
+      <a-tab-pane  v-for="(item, index) of menuStore.tagList" :key="item.path" :title="item.name" :closable="index!==0"/>
     </a-tabs>
   </div>
 </template>
@@ -11,22 +10,23 @@ import { ref } from 'vue';
 import { onBeforeRouteUpdate, useRouter } from 'vue-router';
 import { useMenuStore } from '@/store';
 const router = useRouter();
-const appStore = useMenuStore();
+const menuStore = useMenuStore();
 
-const routeActive = ref('/home')
+const routeActive = ref(menuStore.selectedMenu[0] || '/home')
 
 onBeforeRouteUpdate(to => {
-  routeActive.value = to.fullPath;
+  routeActive.value = to.path;
 });
 
 // 点击Tag
 const handleAdd = (val: string) => {
+  // menuStore.changeSelectedMenu(val)
   router.push({ path: val })
 }
 
 // 移除Tag
 const handleDelete = (val: any) => {
-  appStore.removeTagItem(val)
+  menuStore.removeTagItem(val)
 }
 </script>
 

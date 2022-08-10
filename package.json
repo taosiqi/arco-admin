@@ -12,6 +12,7 @@
     "axios": "^0.26.1",
     "default-passive-events": "^2.0.0",
     "echarts": "^5.3.3",
+    "mitt": "^3.0.0",
     "pinia": "^2.0.17",
     "pinia-plugin-persist": "^1.0.0",
     "qs": "^6.10.3",

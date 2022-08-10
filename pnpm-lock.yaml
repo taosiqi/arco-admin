@@ -10,6 +10,7 @@ specifiers:
   echarts: ^5.3.3
   less: ^4.1.2
   less-loader: ^10.2.0
+  mitt: ^3.0.0
   pinia: ^2.0.17
   pinia-plugin-persist: ^1.0.0
   qs: ^6.10.3
@@ -28,6 +29,7 @@ dependencies:
   axios: 0.26.1
   default-passive-events: 2.0.0
   echarts: 5.3.3
+  mitt: 3.0.0
   pinia: 2.0.17_j6bzmzd4ujpabbp5objtwxyjp4
   pinia-plugin-persist: 1.0.0_pinia@2.0.17+vue@3.2.37
   qs: 6.11.0
@@ -1343,6 +1345,10 @@ packages:
     resolution: {integrity: sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==}
     engines: {node: '>=6'}
     dev: true
+
+  /mitt/3.0.0:
+    resolution: {integrity: sha512-7dX2/10ITVyqh4aOSVI9gdape+t9l2/8QxHrFmUXu4EEUpdlxl6RudZUPZoc+zuY2hk1j7XxVroIVIan/pD/SQ==}
+    dev: false
 
   /mrmime/1.0.1:
     resolution: {integrity: sha512-hzzEagAgDyoU1Q6yg5uI+AorQgdvMCur3FcKf7NhMKWsaYg+RnbTyHRa/9IlLF9rf455MOCtcqqrQQ83pPP7Uw==}

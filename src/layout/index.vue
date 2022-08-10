@@ -8,7 +8,7 @@
         <HeaderView/>
         <TagNavView v-show="appSettingStore.settingsTag" />
       </div>
-      <!-- 主题 -->
+      <!-- 主体 -->
       <a-layout class="layout-main" id="basic-demo">
         <MainView/>
       </a-layout>

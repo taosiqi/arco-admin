@@ -1,15 +1,22 @@
 <template>
   <div class="container">
-    <UserInfo />
-    <div class="content">
-      <UserSetting/>
-    </div>
+    <div @click="goEdit">去修改</div>
+<!--    <UserInfo />-->
+<!--    <div class="content">-->
+<!--      <UserSetting/>-->
+<!--    </div>-->
+
   </div>
 </template>
 
 <script lang="ts" setup>
   import UserInfo from './components/userInfo.vue';
   import UserSetting from './components/userSetting.vue';
+  import {useRoute, useRouter} from "vue-router";
+  const router=useRouter()
+  function goEdit() {
+    router.push({name:'UserEdit'})
+  }
 </script>
 
 <style scoped lang="scss">
