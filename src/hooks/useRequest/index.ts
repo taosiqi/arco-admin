@@ -1,39 +1,24 @@
 // 请求hook
+import {ref, UnwrapRef} from 'vue'
+import {AxiosResponse} from 'axios'
+import {HttpResponse} from '@/api/request'
+import {useLoading} from '../index'
 
-import { toRefs, reactive } from 'vue'
-
-type lady = { icon: string, name: string, path: string, children: any }
-
-interface Type{
-  data: lady[],
-  error: boolean,
-  loading: boolean,
-}
-
-export default (options: { url: any }) => {
-  const { url } = options
-  const state: Type = reactive({
-    data: [],
-    error: false,
-    loading: false,
-  })
-
-  const request = async () => {
-    state.error = false
-    state.loading = true
-    try {
-      const result = await url
-      if (result.status === 200) {
-        state.data = result.data
-        state.loading = false
-      }
-    } catch(e) {
-      state.error = false
-    }
-  }
-
-  return {
-    request,
-    ...toRefs(state)
-  }
+export default function useRequest<T>(
+    api: () => Promise<AxiosResponse<HttpResponse>>,
+    defaultValue = [] as unknown as T,
+    isLoading = true
+) {
+    const {loading, setLoading} = useLoading(isLoading);
+    const response = ref<T>(defaultValue);
+    api()
+        .then((res) => {
+            response.value = res.data as unknown as UnwrapRef<T>;
+        }).catch((err)=>{
+        console.log(err)
+    })
+        .finally(() => {
+            setLoading(false);
+        });
+    return {loading, response};
 }

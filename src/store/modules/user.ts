@@ -6,8 +6,7 @@ interface TypeUsers {
   token: string
 }
 
-export const userStore = defineStore({
-  id: 'user',
+export const userStore = defineStore('user',{
   state: (): TypeUsers => {
     return {
       token: '123'

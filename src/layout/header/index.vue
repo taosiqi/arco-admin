@@ -2,8 +2,8 @@
   <a-layout-header class="py-0 pl-3 pr-10 flex justify-between">
     <a-space class="system-head" size="medium">
       <a-tooltip content="收缩栏" position="bottom">
-        <icon-menu-unfold style="font-size: 22px; cursor: pointer" @click="onCollapse" v-if="appStore.collapsed"/>
-        <icon-menu-fold style="font-size: 22px; cursor: pointer" @click="onCollapse" v-else/>
+        <icon-menu-unfold class="icon" @click="onCollapse" v-if="appStore.collapsed"/>
+        <icon-menu-fold class="icon" @click="onCollapse" v-else/>
       </a-tooltip>
       <BreadcrumbView/>
     </a-space>
@@ -11,37 +11,37 @@
     <a-space class="system-head" size="medium">
       <!-- 全屏 -->
       <a-tooltip :content="isFullscreen? '关闭全屏':'全屏'" position="bottom">
-        <a-button @click="changeScreen" class="nav-btn" type="outline"  shape="circle">
+        <a-button @click="changeScreen" class="nav-btn" type="outline" shape="circle">
           <IconFullscreen/>
         </a-button>
       </a-tooltip>
 
       <!-- 主题切换 -->
-      <a-tooltip content="主题切换" position="bottom">
-        <a-button  class="nav-btn" type="outline" shape="circle" @click="changeTheme">
-          <IconSunFill v-if="Themeflag"/>
+      <a-tooltip :content="isLight ?'点击切换为暗黑模式':'点击切换为亮色模式'" position="bottom">
+        <a-button class="nav-btn" type="outline" shape="circle" @click="settingsStore.changeTheme">
+          <IconSunFill v-if="isLight"/>
           <IconMoonFill v-else/>
         </a-button>
       </a-tooltip>
 
       <!-- 设置面板 -->
-      <a-tooltip content="设置" position="bottom">
-        <a-button  class="nav-btn" type="outline" shape="circle" @click="changeSettings">
+      <a-tooltip content="设置" position="bottom" v-if="isDev">
+        <a-button class="nav-btn" type="outline" shape="circle" @click="changeSettings">
           <icon-settings/>
         </a-button>
       </a-tooltip>
 
       <!-- 退出登录 -->
       <a-dropdown trigger="hover">
-<!--        <a-button>卢本伟-->
-<!--          <icon-down/>-->
-<!--        </a-button>-->
+        <!--<a-button>卢本伟-->
+        <!--   <icon-down/>-->
+        <!--</a-button>-->
         <a-avatar :size="32">
-          <img alt="avatar" src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"/>
+          <img alt="avatar" class="block cup" src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"/>
         </a-avatar>
         <template #content>
           <a-doption @click="userCenter()">
-            <icon-user />
+            <icon-user/>
             <span class="ml-2">个人中心</span>
           </a-doption>
           <a-doption @click="loginOut()">
@@ -53,16 +53,16 @@
       </a-dropdown>
     </a-space>
 
-    <SettingPanel v-show="settingsFlag"/>
+    <SettingPanel v-show="appStore.settingsPanel"/>
   </a-layout-header>
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue';
-import {IconCaretRight, IconCaretLeft, IconSunFill, IconMoonFill, IconFullscreen, IconNotification} from '@arco-design/web-vue/es/icon';
+import {computed, ref, watch} from 'vue';
+import {IconSunFill, IconMoonFill, IconFullscreen} from '@arco-design/web-vue/es/icon';
 import BreadcrumbView from '../breadcrumb/index.vue';
 import SettingPanel from './components/settingPanel.vue';
-import {useMenuStore, userStore} from '@/store';
+import {useMenuStore, userStore, useSettingsStore} from '@/store';
 import {useRouter} from 'vue-router';
 import {Modal} from '@arco-design/web-vue';
 
@@ -70,14 +70,11 @@ import {Modal} from '@arco-design/web-vue';
 import {useFullScreen} from '@/hooks/index';
 
 const {isFullscreen, changeScreen} = useFullScreen();
-
+const isDev = import.meta.env.DEV
 const appStore = useMenuStore();
 const appUser = userStore();
-
+const settingsStore = useSettingsStore();
 const router = useRouter();
-
-const Themeflag = ref(true);
-const settingsFlag = ref(true);
 
 // 收缩栏
 const onCollapse = () => {
@@ -86,18 +83,21 @@ const onCollapse = () => {
 
 // 打开面板
 const changeSettings = () => {
-  appStore.changeSettingPanel(settingsFlag.value);
+  appStore.changeSettingPanel(!appStore.settingsPanel);
 };
-
+const isLight = computed(()=>{
+  return settingsStore.settingTheme==='light'
+})
 // 切换主题
-const changeTheme = () => {
-  Themeflag.value = !Themeflag.value;
-  if (!Themeflag.value) {
-    document.body.setAttribute('arco-theme', 'dark');
-  } else {
+watch(()=>settingsStore.settingTheme,()=>{
+  if (isLight.value) {
     document.body.removeAttribute('arco-theme');
+  } else {
+    document.body.setAttribute('arco-theme', 'dark');
   }
-}
+},{
+  immediate:true
+})
 
 // 个人中心
 const userCenter = () => {
@@ -120,9 +120,15 @@ const loginOut = () => {
 </script>
 
 <style scoped lang="scss">
-.nav-btn,.arco-btn-outline:hover {
+.nav-btn, .arco-btn-outline:hover {
   border-color: rgb(var(--gray-2));
   color: rgb(var(--gray-8));
   font-size: 16px;
+}
+
+.icon {
+  font-size: 22px;
+  cursor: pointer;
+  color: var(--color-text-1);
 }
 </style>

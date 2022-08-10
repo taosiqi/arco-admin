@@ -49,7 +49,7 @@ const carouselItem = computed(() => [
   }
 
   &-title {
-    color: var(--color-fill-1);
+    color: var(--color-text-2);
     font-weight: 500;
     font-size: 20px;
     line-height: 28px;

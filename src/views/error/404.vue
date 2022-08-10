@@ -43,14 +43,14 @@ const pageMap: any = reactive({
 
 // 倒计时返回
 const onCountDownTime = () => {
-  timerFlag = setInterval(():void => {
-    if (countDownTime.value) {
-      countDownTime.value--
-    } else {
-      backHome()
-      clearInterval(timer.value)
-    }
-  }, 1000)
+  // timerFlag = setInterval(():void => {
+  //   if (countDownTime.value) {
+  //     countDownTime.value--
+  //   } else {
+  //     backHome()
+  //     clearInterval(timer.value)
+  //   }
+  // }, 1000)
 }
 
 const backHome = () => {

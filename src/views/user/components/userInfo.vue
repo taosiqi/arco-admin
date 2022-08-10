@@ -5,7 +5,7 @@
         <template #trigger-icon>
           <icon-camera />
         </template>
-        <img src="../../../assets/image/ava.webp" />
+        <img src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png" />
       </a-avatar>
       <a-typography-title :heading="6" style="margin: 0">
         {{ userInfo.name }}
@@ -36,10 +36,10 @@
 import { reactive } from 'vue';
 
 const userInfo = reactive({
-  name: 'BOSS Jin',
+  name: 'Tao SiQi',
   jobName: '前端开发',
-  organizationName: 'Google',
-  locationName: '西安'
+  organizationName: 'PinXin',
+  locationName: '深圳'
 })
 </script>
 

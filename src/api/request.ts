@@ -11,6 +11,12 @@ import qs from 'qs';
 import { showMessage } from "./status";
 import { Message } from '@arco-design/web-vue';
 
+export interface HttpResponse<T = unknown> {
+  desc: string;
+  code: number;
+  data: T;
+}
+
 // 用于存储pending的请求（处理多条相同请求）
 const pendingRequest = new Map()
 
@@ -42,12 +48,11 @@ const removePendingRequest = (config: any) => {
   }
 }
 
-const request:AxiosInstance = axios.create({
-  baseURL: 'https://www.fastmock.site/mock/2c72ce673f122b20bdb3f4daa85ea6be/white/api',
+axios.create({
+  baseURL: '',
   timeout: 5000,
   headers: {
     Accept: "application/json",
-    "Content-Type": "application/x-www-form-urlencoded"
   },
   transformRequest: [function (data) {
     return qs.stringify(data)
@@ -55,16 +60,17 @@ const request:AxiosInstance = axios.create({
 });
 
 // axios实例拦截响应
-request.interceptors.response.use(
-  (response: AxiosResponse) => {
-    if (response.status === 200) {
+axios.interceptors.response.use(
+  (response: AxiosResponse<HttpResponse>) => {
+    //浏览器自带的status，和后端约定的是code
+    if (response.data.code==200) {
       // 处理重复请求
       removePendingRequest(response)
       addPendingRequest(response)
-      return response;
+      return response.data;
     } else {
-      showMessage(response.status);
-      return response;
+      showMessage(response.data.code);
+      return Promise.reject(response.data);
     }
   },
   // 请求失败
@@ -81,7 +87,7 @@ request.interceptors.response.use(
 );
 
 // axios实例拦截请求
-request.interceptors.request.use(
+axios.interceptors.request.use(
   (config: AxiosRequestConfig) => {
     // 移除重复请求
     removePendingRequest(config)
@@ -94,6 +100,4 @@ request.interceptors.request.use(
     removePendingRequest(error.config || {})
     return Promise.reject(error);
   }
-) 
-
-export default request
+)

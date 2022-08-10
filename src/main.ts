@@ -1,19 +1,18 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import 'default-passive-events';
-
+import '@/api/request';
 // 导入arco组件库和自定义的主题样式
 import ArcoVue from '@arco-design/web-vue';
-// import '@arco-design/web-vue/dist/arco.css';  // 去除默认的css
 import '@arco-themes/vue-colors/index.less';
 import 'uno.css'
 
 // 额外引入图标库
 import ArcoVueIcon from '@arco-design/web-vue/es/icon';
+//需要覆盖的样式
 import './styles/index.scss'
-import './assets/icon/iconfont.js';
 
-// 引入路由和pinai
+// 引入路由和pinia
 import Router from './router/index';
 import store from './store'
 

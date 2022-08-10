@@ -1,27 +1,29 @@
 import { defineStore } from 'pinia';
 
 interface TypeSettings {
-  settingColor: string,
   settingsTag: boolean;
   settingsMenu: boolean;
   settingsBlindness: boolean;
+  settingTheme:'light' | 'dark'
 }
 
-export const useSettingsStore = defineStore({
-  id: 'setting',
+export const useSettingsStore = defineStore('setting',{
   state: (): TypeSettings => {
     return {
-      settingColor: '#318DDD',
       settingsTag: true,
       settingsMenu: true,
-      settingsBlindness: false
+      settingsBlindness: false,
+      settingTheme:'light',
     }
   },
   getters: {},
   actions: {
-    changeColoe(val: string) {
-      this.settingColor = val
+    changeTheme() {
+      this.settingTheme = this.settingTheme==='dark'?'light':'dark'
     }
+  },
+  persist: {
+    enabled: true // 只有修改了的才会做持久化缓存
   }
 })
 

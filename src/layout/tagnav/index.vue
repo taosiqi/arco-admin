@@ -1,7 +1,7 @@
 <template>
   <div class="tag-content">
-    <a-tabs type="card-gutter" :editable="true" @tab-click="handleAdd" @delete="handleDelete" auto-switch :active-key="routeActive">
-      <a-tab-pane v-for="(item, index) of appStore.tagList" :key="item.path" :title="item.name" :closable="index!==0">
+    <a-tabs type="rounded"  :editable="true" @tab-click="handleAdd" @delete="handleDelete" auto-switch :active-key="routeActive">
+      <a-tab-pane size='mini' v-for="(item, index) of appStore.tagList" :key="item.path" :title="item.name" :closable="index!==0">
       </a-tab-pane>
     </a-tabs>
   </div>
@@ -44,5 +44,11 @@ const handleDelete = (val: any) => {
 // vue3最新样式穿透
 :deep(.arco-tabs-content){
   display: none !important;
+}
+:deep(.arco-tabs-nav-type-rounded .arco-tabs-tab){
+  border-radius: 0;
+}
+:deep(.arco-tabs-tab){
+  background-color: var(--color-fill-2);
 }
 </style>

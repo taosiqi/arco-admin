@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-content">
       <i class="header-content-icon"><icon-bytedance-color /></i>
-      <span class="header-content-title" :style="{ color: appSettingStore.settingColor }" v-if="!appStore.collapsed">{{appStore.systemName}}</span>
+      <span class="header-content-title"  v-if="!appStore.collapsed">{{appStore.systemName}}</span>
     </div>
   </div>
 </template>
@@ -18,7 +18,7 @@ const appSettingStore = useSettingsStore()
   display: flex;
   align-items: center;
   justify-content: center;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
   .header-content {
     display: flex;
     align-items: center;
@@ -33,7 +33,8 @@ const appSettingStore = useSettingsStore()
     .header-content-title {
       font-weight: 700;
       font-size: 16px;
-      padding-left: 10px
+      padding-left: 10px;
+      color: var(--color-text-1);
     }
   }
 

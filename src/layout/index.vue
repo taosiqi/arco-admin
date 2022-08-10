@@ -65,7 +65,7 @@ const ColorBlindness = computed(() => {
 .layout-demo :deep(.arco-layout-header)  {
   height: 64px;
   line-height: 64px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
   background: var(--color-bg-3);
 }
 .layout-demo :deep(.arco-layout-footer) {

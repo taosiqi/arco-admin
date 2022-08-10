@@ -12,7 +12,7 @@
       <div class="text-center" v-if="loading">
         <a-spin tip="加载中"></a-spin>
       </div>
-      <template v-for="item in data">
+      <template v-for="item in response">
         <a-sub-menu :key="item.path" v-if="item.children && item.children.length">
           <template #title>
             <component :is="item.icon"/>
@@ -37,26 +37,40 @@
 </template>
 
 <script lang="ts" setup>
-import {onMounted} from 'vue';
+import {computed, onMounted, watch} from 'vue';
 import {useRouter} from 'vue-router';
 import {useMenuStore} from '@/store';
 import HeaderLine from './components/HeaderLine.vue';
-import {getMenu} from '@/api/test';
+import {getMenu, Menu} from '@/api/test';
 import {useRequest} from '@/hooks/index';
 
 const router = useRouter()
 const appStore = useMenuStore()
+const defaultValue:Menu[]=[
+  {
+    "icon": "icon-settings",
+    "name": "工作台",
+    "path": "/home"
+  },
+  {
+    "icon": "icon-settings",
+    "name": "异常页",
+    "path": "/error-page/403"
+  },
+  {
+    "icon": "icon-settings",
+    "name": "用户中心",
+    "children": [
+      {
+        "name": "用户设置",
+        "path": "/user"
+      }
+    ]
+  }]
+const {response, loading} = useRequest<Menu[]>(getMenu,defaultValue)
 
-const {data, loading, error, request} = useRequest({
-  url: getMenu()
-})
-
-onMounted(() => {
-  request()
-})
 const onClickMenuItem = (key: any) => {
 }
-
 // 点击菜单
 const handleClickItem = (item: any) => {
   if (item.path) {

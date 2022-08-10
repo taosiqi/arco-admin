@@ -10,8 +10,7 @@ interface MenuState {
   tagList: Array<any>;
 }
 
-export const useMenuStore = defineStore({
-  id: 'menu',
+export const useMenuStore = defineStore('menu',{
   state: (): MenuState => {
     return {
       systemName: '榕树-Admin',

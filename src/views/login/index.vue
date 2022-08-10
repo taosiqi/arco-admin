@@ -25,7 +25,7 @@ import LoginForm from './components/loginForm.vue';
 .container {
   display: flex;
   height: 100vh;
-
+  background: var(--color-bg-3);
   .banner {
     width: 550px;
     background: linear-gradient(163.85deg, #1d2129 0%, #00308f 100%);
@@ -52,7 +52,7 @@ import LoginForm from './components/loginForm.vue';
   &-text {
     margin-right: 4px;
     margin-left: 4px;
-    color: var(--color-fill-1);
+    color: var(--color-text-1);
     font-size: 20px;
   }
 }

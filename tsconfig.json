@@ -11,6 +11,9 @@
     "lib": ["esnext", "dom"],
     "baseUrl": "./",
     "suppressImplicitAnyIndexErrors":true,
+    "types": [
+      "pinia-plugin-persist"
+    ],
     "paths": {
       "@/*": ["src/*",],
       "comps/*": ["src/components/*"],
