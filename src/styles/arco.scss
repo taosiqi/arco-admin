@@ -1,0 +1,10 @@
+.arco-menu-inner{
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: calc(100vh - 66px);
+}
+
+.arco-menu-inner::-webkit-scrollbar {
+  /*隐藏滚轮*/
+  display: none;
+}
