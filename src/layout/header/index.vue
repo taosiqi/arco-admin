@@ -37,7 +37,7 @@
         <!--   <icon-down/>-->
         <!--</a-button>-->
         <a-avatar :size="32">
-          <img alt="avatar" class="block cup" src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"/>
+          <img alt="avatar" class="block cursor-pointer" src="//lf1-xgcdn-tos.pstatp.com/obj/vcloud/vadmin/start.8e0e4855ee346a46ccff8ff3e24db27b.png"/>
         </a-avatar>
         <template #content>
           <a-doption @click="userCenter()">

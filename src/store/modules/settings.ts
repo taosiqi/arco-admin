@@ -10,7 +10,7 @@ interface TypeSettings {
 export const useSettingsStore = defineStore('setting',{
   state: (): TypeSettings => {
     return {
-      settingsTag: true,
+      settingsTag: false,
       settingsMenu: true,
       settingsBlindness: false,
       settingTheme:'light',

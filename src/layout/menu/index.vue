@@ -64,9 +64,6 @@ onBeforeRouteUpdate(async (to, from) => {
   deep(defaultValue)
 })
 
-
-
-
 const defaultValue:Menu[]=[
   {
     "icon": "icon-settings",

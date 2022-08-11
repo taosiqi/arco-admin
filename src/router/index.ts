@@ -3,7 +3,7 @@ import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 declare module 'vue-router' {
     interface RouteMeta {
         // 是可选的
-        title?: Array<string> | string
+        title?: Array<string>
         // 每个路由都必须声明
         moduleName?: string
         keepAlive?:boolean
