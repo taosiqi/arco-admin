@@ -2,14 +2,26 @@
 
 import { defineStore } from 'pinia';
 
-interface TypeUsers {
-  token: string
+export interface TypeUsers {
+  token: string,
+  permissions:{
+    [propName: string]: {
+      [propName: string]: string
+    }
+  }
 }
+
 
 export const userStore = defineStore('user',{
   state: (): TypeUsers => {
     return {
-      token: '123'
+      token: 'token',
+      permissions:{
+        '/user':{
+          '新增':'add',
+          // '修改':'edit'
+        }
+      }
     }
   },
   getters: {},

@@ -20,7 +20,6 @@ onBeforeRouteUpdate(to => {
 
 // 点击Tag
 const handleAdd = (val: string) => {
-  // menuStore.changeSelectedMenu(val)
   router.push({ path: val })
 }
 

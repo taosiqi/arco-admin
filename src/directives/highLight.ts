@@ -2,8 +2,10 @@
  * 高亮修改样式
  */
 
+import {DirectiveBinding} from "vue";
+
 export default {
-  beforeMount(el: any, binding: any) {
+  beforeMount(el: HTMLElement, binding: DirectiveBinding) {
     el.style.background = binding.value
   }
 }

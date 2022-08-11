@@ -1,11 +1,10 @@
 import copy from "./copy";
 import highLight from "./highLight";
 import debounce from "./debounce";
-import throttle from "./throttle";
-
+import permission from "./permission";
 export default {
   copy,
   highLight,
   debounce,
-  throttle
+  permission
 }

@@ -2,7 +2,7 @@
 import {ref, UnwrapRef} from 'vue'
 import {AxiosResponse} from 'axios'
 import {HttpResponse} from '@/api/request'
-import {useLoading} from '../index'
+import {useLoading} from './index'
 
 export default function useRequest<T>(
     api: () => Promise<AxiosResponse<HttpResponse>>,

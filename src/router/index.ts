@@ -19,26 +19,24 @@ const routes = [
                 path: '/home',
                 name: 'Home',
                 component: () => import('@/views/home/index.vue'),
-                meta: {title: '工作台', keepAlive: false}
+                meta: {title: ['工作台']}
             },
             {
-                path: '/user',
-                redirect: '/user/list',
-                name: 'User',
-                meta: {title: '用户中心', keepAlive: false},
-                // component:()=>h(resolveComponent("router-view")),
+                path: '/',
+                redirect: '/user',
+                meta: {title: ['用户中心']},
                 children: [
                     {
-                        path: '/user/list',
+                        path: '/user',
                         name: 'UserList',
                         component: () => import('@/views/user/index.vue'),
-                        meta: {title: '个人中心', keepAlive: false}
+                        meta: {title: ['个人中心']}
                     },
                     {
                         path: '/user/edit',
                         name: 'UserEdit',
                         component: () => import('@/views/user/edit.vue'),
-                        meta: {title: '修改信息', keepAlive: false}
+                        meta: {title: ['个人中心','修改信息'],moduleName:'/user'}
                     },
                 ]
             },
@@ -46,7 +44,7 @@ const routes = [
                 path: '/error-page/:id',
                 name: 'ErrorPage',
                 component: () => import('@/views/error/404.vue'),
-                meta: {title: '异常页', keepAlive: false}
+                meta: {title: ['异常页']}
             },
             {
                 path: "/:catchAll(.*)",

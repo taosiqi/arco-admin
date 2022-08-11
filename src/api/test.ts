@@ -10,6 +10,7 @@ export interface Menu {
     icon?: string,
     name: string,
     path?: string,
+    isMenu?:boolean,
     children?: Array<Menu>
 }
 export function getMenu() {

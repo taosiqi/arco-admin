@@ -52,10 +52,10 @@ const appStore = useMenuStore()
 //匹配选中的菜单
 onBeforeRouteUpdate(async (to, from) => {
   // console.log(to)
-  // if (to.path) {
-  //   // router.push({path: item.path})
-  //   appStore.addTagItem({name:to.meta.title,path:to.path})
-  // }
+  if (to.path) {
+    // router.push({path: item.path})
+    // appStore.addTagItem({name:to.meta.title,path:to.path})
+  }
   const deep = (menu:Menu[]) => {
     menu.forEach(({path,children})=>{
       if(path===to.path){
@@ -89,12 +89,8 @@ const defaultValue:Menu[]=[
     "children": [
       {
         "name": "个人中心",
-        "path": "/user/list"
+        "path": "/user"
       },
-      {
-        "name": "异常页面",
-        "path": "/error-page/404"
-      }
     ]
   }]
 const {response, loading} = useRequest<Menu[]>(getMenu,defaultValue)

@@ -8,8 +8,10 @@
  * <a-button v-debounce="[test,'click',1000,true]">防抖测试</a-button>
  */
 
+import {DirectiveBinding} from "vue";
+
 export default {
-  beforeMount(el: any, binding: any) {
+  beforeMount(el: HTMLElement &{$type:string,$handle:()=>void}, binding: DirectiveBinding ) {
     let [func, type = 'click', wait = 300, immediate = true] = binding.value;
     let timer: any;
     el.$type = type;

@@ -1,4 +1,5 @@
-import useFullScreen from './useScreenfull/index';
-import useRequest from './useRequest/index';
-import useLoading from './useLoading/index';
-export { useFullScreen, useRequest,useLoading }
+import useFullScreen from './useScreenfull';
+import useRequest from './useRequest';
+import useLoading from './useLoading';
+import usePowerList from './usePowerList';
+export { useFullScreen, useRequest,useLoading,usePowerList }

@@ -1,15 +1,16 @@
 <template>
   <div class="container">
-    <div @click="goEdit">去修改</div>
-<!--    <UserInfo />-->
-<!--    <div class="content">-->
-<!--      <UserSetting/>-->
-<!--    </div>-->
+    <div @click="goEdit" v-permission="['add']">去修改</div>
+    <UserInfo />
+    <div class="content">
+      <UserSetting/>
+    </div>
 
   </div>
 </template>
 
 <script lang="ts" setup>
+  import {usePowerList} from "@/hooks";
   import UserInfo from './components/userInfo.vue';
   import UserSetting from './components/userSetting.vue';
   import {useRoute, useRouter} from "vue-router";

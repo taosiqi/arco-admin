@@ -1,4 +1,4 @@
-import { createApp } from 'vue';
+import {createApp, onMounted} from 'vue';
 import App from './App.vue';
 import 'default-passive-events';
 import '@/api/request';

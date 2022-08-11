@@ -2,8 +2,10 @@
  * 粘贴指令
  */
 
+import {DirectiveBinding} from "vue";
+
 export default {
-    beforeMount(el: any | object, binding: any | object) {
+    beforeMount(el: HTMLElement & {hasIcon:boolean}, binding:DirectiveBinding) {
       // 双击触发复制
       if (binding.modifiers.dblclick) {
         el.addEventListener('dblclick', () => handleClick(el.innerText))
@@ -27,7 +29,7 @@ export default {
       }
     }
   }
-  
+
   function handleClick (text: string) {
     // 创建元素
     if (!document.getElementById('copyTarget')) {
@@ -36,7 +38,7 @@ export default {
       copyTarget.setAttribute('id', 'copyTarget')
       document.body.appendChild(copyTarget)
     }
-  
+
     // 复制内容
     const input:any  = document.getElementById('copyTarget')
     input.value = text
@@ -44,4 +46,3 @@ export default {
     document.execCommand('copy')
     // alert('复制成功')
   }
-  
