@@ -51,11 +51,6 @@ const router = useRouter()
 const appStore = useMenuStore()
 //匹配选中的菜单
 onBeforeRouteUpdate(async (to, from) => {
-  // console.log(to)
-  if (to.path) {
-    // router.push({path: item.path})
-    // appStore.addTagItem({name:to.meta.title,path:to.path})
-  }
   const deep = (menu:Menu[]) => {
     menu.forEach(({path,children})=>{
       if(path===to.path){
@@ -99,7 +94,6 @@ const onClickMenuItem = (key: any) => {
 }
 // 点击菜单
 const handleClickItem = (item: any) => {
-  console.log(item)
   if (item.path) {
     router.push({path: item.path})
     appStore.addTagItem(item)

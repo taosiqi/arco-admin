@@ -8,7 +8,10 @@ interface MenuState {
   settingsPanel: Boolean;
   activeMenu: Array<string>;
   selectedMenu:Array<string>;
-  tagList: Array<any>;
+  tagList: Array<{
+    name:string,
+    path:string
+  }>;
 }
 
 export const useMenuStore = defineStore('menu',{
@@ -43,7 +46,7 @@ export const useMenuStore = defineStore('menu',{
 
     // 新增一个标签
     addTagItem(val: any) {
-      if (val.name !== '工作台') {
+      if (val.path !== '/home') {
         let result = this.tagList.findIndex(item => item.name === val.name);
         if (result >= 0) {
           return
