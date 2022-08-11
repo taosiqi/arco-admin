@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^17.0.21",
     "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "sass": "^1.34.1",

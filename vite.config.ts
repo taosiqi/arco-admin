@@ -3,7 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import { presetAttributify, presetIcons, presetUno } from 'unocss'
 import unoCss from 'unocss/vite'
 import path from "path";
-
+// import vueJsx from '@vitejs/plugin-vue-jsx'
 // @ts-ignore
 const resolve = dir => {
   return path.join(__dirname, dir)
@@ -13,6 +13,7 @@ const resolve = dir => {
 export default defineConfig({
   plugins: [
     vue(),
+    // vueJsx({}),
     unoCss({
       presets: [presetUno(), presetAttributify(), presetIcons()],
       rules: []
