@@ -2,7 +2,7 @@
   <div class="fixed">
     <a-drawer :visible="appStore.settingsPanel" @ok="handleOk" @cancel="handleOk" unmountOnClose>
       <template #title>设置面板</template>
-      <div class="flex justify-between align-middle mb-2.5">
+      <div class="flex justify-between align-middle mb-2.5" v-show="false">
         <span class="settingContent-contne-title">标签页</span>
         <span class="settingContent-contne-parts">
             <a-switch v-model="appSettingStore.settingsTag" />

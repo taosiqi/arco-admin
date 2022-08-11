@@ -1,13 +1,20 @@
-import {createRouter, createWebHistory} from 'vue-router';
-import {useMenuStore} from '@/store/modules/menu';
-import {h, resolveComponent} from 'vue'
+import {createRouter, createWebHistory, RouteRecordRaw} from 'vue-router';
 
-const routes = [
+declare module 'vue-router' {
+    interface RouteMeta {
+        // 是可选的
+        title?: Array<string> | string
+        // 每个路由都必须声明
+        moduleName?: string
+        keepAlive?:boolean
+    }
+}
+
+const routes:Array<RouteRecordRaw> = [
     {
         path: '/login',
         name: 'login',
         component: () => import('@/views/login/index.vue'),
-        meta: {title: '登录页', keepAlive: false}
     },
     {
         path: '/',

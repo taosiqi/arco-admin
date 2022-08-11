@@ -15,7 +15,7 @@ const menuStore = useMenuStore();
 const routeActive = ref(menuStore.selectedMenu[0] || '/home')
 
 onBeforeRouteUpdate(to => {
-  routeActive.value = to.path;
+  routeActive.value = to.meta.moduleName || to.path;
 });
 
 // 点击Tag
